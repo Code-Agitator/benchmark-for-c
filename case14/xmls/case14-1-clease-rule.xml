@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RulePack xmlns="xmlns://www.fortifysoftware.com/schema/rules">
+    <RulePackID>37E7F312-FF21-446A-8045-ACD2FA1951A5</RulePackID>
+    <SKU>cleanse buffer overflow</SKU>
+    <Name><![CDATA[cleanse buffer overflow]]></Name>
+    <Version>1.0</Version>
+    <Description><![CDATA[cleanse buffer overflow]]></Description>
+    <Rules version="3.2">
+        <RuleDefinitions>
+            <DataflowCleanseRule formatVersion="3.10" language="cpp">
+                <RuleID>A3881895-8409-4A21-A308-7ED0F196BE84</RuleID>
+                <FunctionIdentifier>
+                    <FunctionName>
+                        <Pattern>check_in_msglen</Pattern>
+                    </FunctionName>
+                </FunctionIdentifier>
+                <OutArguments>0</OutArguments>
+            </DataflowCleanseRule>
+        </RuleDefinitions>
+    </Rules>
+</RulePack>

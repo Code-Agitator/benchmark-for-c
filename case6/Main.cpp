@@ -1,7 +1,11 @@
+/**
+ * 实际场景
+ */
 #include <cstring>
 #include <cstdio>
 #include <cstdarg>
 #include <cstdint>
+#include <cstdlib>
 
 void case6_1(char *str, bool flag, char *log...);
 
@@ -20,9 +24,31 @@ int case6(int *input) {
     char *str;
     bool flag = strlen(log) % 2 == 0;
     if (flag) {
-        str = new char[block_size];
+        str = (char *) malloc(block_size);
     } else {
-        str = new char[64];
+        str = (char *) malloc(64);
+    }
+    case6_1(str, flag, log, taint);
+    return 0;
+}
+
+int case6_fix(int *input) {
+    int taint = (input[0] << 8) | input[2];//  8CB25599-02F1-4525-9DDF-8AE304A01342
+    printf("%d", taint);
+    char log[500] = "";
+    scanf("%499s", &log);
+    char *str;
+    bool flag = strlen(log) % 2 == 0;
+    int buffer_size = 0;
+    if (flag) {
+        str = (char *) malloc(block_size);
+        buffer_size = block_size;
+    } else {
+        str = (char *) malloc(64);
+        buffer_size = 64;
+    }
+    if ((taint + OFFSET + 16) >= buffer_size) {
+        return -1;
     }
     case6_1(str, flag, log, taint);
     return 0;
